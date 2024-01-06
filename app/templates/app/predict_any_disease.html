@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Predict{% endblock title %}
+{% block active3%}active{% endblock active3%}
+{% block main-content %}
+
+<div class="container border h-50 mt-5 text-center py-4">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Upload the Pic of Any leaf in jpg Format</h3>
+        
+        <input type="file" name="image1" id="uploadImage" class="form-control btn btn-primary">
+        
+        <!-- Image preview section -->
+        <div class="mt-3">
+            <img src="" id="imagePreview" alt="Uploaded Image" class="img-fluid" height="300px" width="300px" style="display: none;overflow:hidden;">
+        </div>
+        
+        <input type="submit" class="btn btn-danger mt-5" name="Predict">
+    </form>
+</div>
+
+
+
+<!-- Add Bootstrap JS and your custom script here -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<script>
+    document.getElementById('uploadImage').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+{% endblock main-content %}

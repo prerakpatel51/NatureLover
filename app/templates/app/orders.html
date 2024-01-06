@@ -1,0 +1,103 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Orders {% endblock title %}
+{% block main-content %}
+<div class="container-fluid my-5">
+    <div class="row d-flex flex-wrap mx-3">
+        <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-sm-9 offset-sm-1">
+            <hr>
+            <div class="row d-flex flex-wrap shadow-sm mb-3">
+                <div class="col-sm-2">
+                    <img src="{% static 'app/images/book.jpeg'%}" alt="">
+                </div>
+                <div class="col-sm-1"><br><br><br><br><i class="fa fa-plus fa-lg"></i></div>
+                <div class="col-sm-3">
+                    <iframe src="https://giphy.com/embed/j3c8gzkQCZuHxfzacL" width="200" height="200" frameBorder="0"
+                        class="giphy-embed" allowFullScreen></iframe>
+                    <p><a href="https://giphy.com/gifs/Pepephone-pepe-pepephone-lunares-j3c8gzkQCZuHxfzacL"></a></p>
+                </div>
+                <div class="col-sm-5">
+                  <h3 class=""> Get You Free Guide Book ,Disease Book along with Ebook and Free gift with any plant you buy above Rs.300 .
+                </h3> </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            {%for op in order_placed %}
+            <hr>
+            <div class="row shadow-sm mb-3">
+                <div class="col-sm-2">
+                    <img src="{{op.product.product_image.url}}" class="img-fluid" alt="" srcset="" height="150"
+                        width="150">
+                </div>
+                <div class="col-sm-7">
+                    <p>Product:{{op.product.title}}</p>
+                    <p>Quantity:{{op.quantity}}</p>
+                    <p>Price:{{op.total_cost}}</p>
+                </div>
+                <div class="col-sm-3 fw-bold">
+                    <p>Order Status:{{op.status}}</p>
+                    {% if op.status == 'Accepted' %}
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width:20%" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100">
+
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if op.status == 'Packed' %}
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width:40%" aria-valuenow="40"
+                            aria-valuemin="0" aria-valuemax="100">
+
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if op.status == 'On The Way' %}
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width:70%" aria-valuenow="70"
+                            aria-valuemin="0" aria-valuemax="100">
+
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if op.status == 'Delivered' %}
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:100%" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100">
+
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if op.status == 'Cancel' %}
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100">
+
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endblock main-content %}

@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Predict{% endblock title %}
+{% block main-content %}
+<div class="container border h-50 mt-5 pt-5 text-center"><h1>Prediction Result</h1>
+    
+    
+    <!-- prediction_cottondisease.html -->
+
+{% if prediction %}
+  <h4 class="mt-5">Prediction of the Disease: {{ prediction }}</h4>
+  <p>Note:The result may not be 100% accurate( 94% accuracy che a model ni)</p>
+{% else %}
+  <p>No prediction available</p>
+{% endif %}
+
+
+</div>
+{% endblock main-content %}

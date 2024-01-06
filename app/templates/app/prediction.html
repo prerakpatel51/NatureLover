@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Prediction{% endblock title %}
+{% block active4%}active{% endblock active4%}
+{% block main-content %}
+<div class="container text-center border h-50 mt-5 pt-5"><h1>Prediction Result</h1>
+    
+    
+    <!-- prediction.html -->
+
+{% if prediction %}
+  <p>Predicted Flower: {{ prediction }}</p>
+  <p>Note: the result may not be 100 % sure</p>
+{% else %}
+  <p>No prediction available</p>
+{% endif %}
+
+
+</div>
+{% endblock main-content %}

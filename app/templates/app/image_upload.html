@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Flower{% endblock title %}
+{% block main-content %}
+<h1>Flower Classification</h1>
+  <form action="/predict" method="get" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image1" accept="image/*">
+    <input type="submit" value="Predict">
+  </form>
+{% endblock main-content %}
